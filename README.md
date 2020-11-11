@@ -1,1 +1,1 @@
-The slides can be found at (jindrvo1.github.io/python-edh)[https://jindrvo1.github.io/python-edh/]
+The slides can be found at [jindrvo1.github.io/python-edh](https://jindrvo1.github.io/python-edh/).
