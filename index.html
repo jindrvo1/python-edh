@@ -1,0 +1,345 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/simple.css" id="theme">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css" id="highlight-theme">
+		<style>
+			ul {
+				display: block!important;
+				text-align: left;
+			}
+			li {
+				font-size: 24px;
+			}
+			small.email {
+				font-size: 12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<!-- Slide 1: Introduction -->
+					<section>
+						<h2>Introduction to Python</h2>
+						<h3>Lecture 1</h3>
+						<p>
+							<small>CERGE-EI Economics Discovery Hub</small><br/>
+							<small>Vojtěch Jindra</small><br/>
+							<small class="email"><a href="mailto:jindravo@gmail.com">jindravo@gmail.com</a></small>
+						</p>
+					</section>
+
+					<!-- Slide 2: Getting started -->
+					<section>
+						<h2>Getting started</h2>
+						<ul>
+							<li>Installing Python: <a href="https://www.python.org/downloads/" target="_blank">www.python.org</a></li>
+							<li>Installing Conda: <a href="https://docs.conda.io/projects/conda/en/latest/user-guide/install/" target="_blank">docs.conda.io</a></li>
+							<li>Online Python: <a href="https://repl.it/languages/python3" target="_blank">repl.it</a></li>
+							<li>Online Jupyter Notebook: 
+								<ul>
+									<li><a href="https://mybinder.org/v2/gh/ipython/ipython-in-depth/master?filepath=binder/Index.ipynb" target="_blank">jupyter.org</a></li>
+									<li><a href="https://cocalc.com/" target="_blank">cocalc.com</a></li>
+									<li><a href="https://colab.research.google.com/" target="_blank">colab.research.google.com</a></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Slide 4: Basic data types and operators -->
+					<section>
+						<h3>Basic data types and operators</h3>
+						<ul>
+							<li>Data types:
+								<ul>
+									<li>Integers (1, -24, 190)</li>
+									<li>Floats (1.0, 3.14159, -14.2)</li>
+									<li>Complex (3 + 2i)</li>
+									<li>Booleans (<code>True, False</code>)</li>
+									<li>Strings (<code>"abc", "this is a string"</code>)</li>
+								</ul>
+							</li>
+							<li>Operators:
+								<ul>
+									<li>Arithmetic (<code>+, -, *, **, /, //, %</code>)</li>
+									<li>Logic (<code>and, or, not</code>)</li>
+									<li>Comparison operators (<code><, <=, >, >=, ==, !=</code>)</li>
+									<li>Special (<code>in, is</code>)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Slide 5: Variables -->
+					<section>
+						<h3>Variables</h3>
+						<ul>
+							<li>Containers for storing data</li>
+							<li>No declaration + initialization in Python</li>
+							<li>No specific command for creating a variable</li>
+							<li>Several rules for variable names (alphanumeric, underscores, cannot start with a number)</li>
+							<li>Variable names are case-sensitive (var != Var)</li>
+						</ul>
+					</section>
+
+					<!-- Slide 6: Data Structure -->
+					<section>
+						<h3>Data Structures</h3>
+						<ul>
+							<li><code>list</code>: Collection of values, ordered, mutable (<code>[1, 2, 3]</code>)</li>
+							<li><code>tuple</code>: Collection of values, ordered, immutable (<code>(1, 2, 3)</code>)</li>
+							<li><code>set</code>: Collection of values, unordered, mutable, no duplicates (<code>{1, 2, 3}</code>)</li>
+							<li><code>dict</code>: Collection of key-value pairs, unordered, mutable, no duplicate keys (<code>{'a': 1, 'b': 2}</code>)</li>
+						</ul>
+					</section>
+
+					<!-- Slide 7: Control Flow -->
+					<section>
+						<h3>Control Flow</h3>
+						<ul>
+							<li><code>if-elif-else</code> statement: One of the branches is executed based on a condition</li>
+							<li><code>for</code> statement: Iterates over a sequence</li>
+							<li><code>while</code> statement: Iterates as long as a condition is met</li>
+							<li><code>continue</code> statement: Continues with the next iteration of the loop</li>
+							<li><code>break</code> statement: Stops a <code>while</code> or <code>for</code> loop.</li>
+							<li><code>pass</code> statement: Does literally nothing</li>
+						</ul>
+					</section>
+
+					<!-- Slide 8: Functions -->
+					<section>
+						<h3>Functions</h3>
+						<ul>
+							<li>Blocks of code that are only executed once called</li>
+							<li>Can accept data that the inner code works with (parameters)</li>
+							<li>Parameters can be ordered (<code>f(1, 2, 3)</code>) or named (<code>f(a=1, b=1)</code>), and also combination of both (<code>f(1, 2, c=3)</code>)</li>
+							<li>However, named parameters have to be after ordered parameters (<code>f(a=1, 2, 3)</code> throws an error)</li>
+							<li>Can return data that the outer code works with</li>
+							<li>Functions can also be anonymous with a slightly different syntax (<code>(lambda a,b: a+b)(1, 2)</code>)</li>
+						</ul>
+					</section>
+
+					<!-- Slide 9: Formatting -->
+					<section>
+						<h3>Output formatting</h3>
+						<ul>
+							<li>C-style formatting with <code>%</code>
+								<ul>
+									<li><code>%s</code> for a string</li>
+									<li><code>%f</code> for a float</li>
+									<li><code>%.2f</code> for a float with 2 digits after the floating point</li>
+									<li><code>%d</code> for an integer</li>
+								</ul>
+							</li>
+							<li><code>format</code> function
+								<ul>
+									<li><code>"I'm {} years old".format(24)</code></li>
+									<li><code>{}</code> will be replaced with arguments to <code>format</code></li>
+									<li>Can also used named arguments as <code>"{name} is {age} years old".format(name="Vojtech", age=24)</code></li>
+								</ul>
+							</li>
+							<li>f-strings
+								<ul>
+									<li>Prefix a string with an f (<code>f"string"</code>)</li>
+									<li>Then variables can be put directly into the string using brackets (<code>f"My age is {age}"</code>)</li>
+									<li>Otherwise formatting similar to <code>format</code> function</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Slide 10: Resources -->
+					<section>
+						<h3>Some useful resources</h3>
+						<ul>
+							<li><a href="https://docs.python.org/3/" target="_blank">Official Python documentation</a></li>
+							<li><a href="https://pypi.org/" target="_blank">Index of Python libraries</a></li>
+							<li><a href="https://learnxinyminutes.com/docs/python/" target="_blank">"Cheatsheet" for Python basics</a></li>
+							<li><a href="https://automatetheboringstuff.com/" target="_blank">Automate The Boring Stuff with Python</a></li>
+						</ul>
+					</section>
+
+					<!-- Slide 11: Practice -->
+					<section>
+						<h2>Tasks for practicing</h2>
+					</section>
+
+					<!-- Slide 12: Greatest exponent -->
+					<section>
+						<h3>Greatest exponent</h3>
+						<ul>
+							<li>Description: Write a function called <code>find_exp</code> that, provided two parameters <code>n</code> and <code>lim</code>, will find the greatest exponent <code>n</code> can be powered to that will make the result (<code>n**m</code>) lesser or equal tha <code>lim</code>. Then, return such number. In other words, find the largest <code>m</code> for which the equation <code>n<sup>m</sup> <= lim</code> holds true, and return <code>m</code>. If <code>lim</code> is less than 1, you don't have to bother with negative results, simply return None.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>n</code>: The <code>n</code> in the equation <code>n<sup>m</sup> <= lim</code></li>
+									<li><code>lim</code>: The <code>lim</code> in the equation <code>n<sup>m</sup> <= lim</code></li>
+								</ul>
+							</li>
+							<li>Expected output: The highest possible exponent <code>m</code> that satisfies the equation <code>n<sup>m</sup> <= lim</code>.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> find_exp(2, 500)<br/><!--
+									-->> 8<br/><!--
+									-->>>> find_exp(2, 512)<br/><!--
+									-->> 9<br/><!--
+									-->>>> find_exp(2, 1)<br/><!--
+									-->> 0<br/><!--
+									-->>>> find_exp(2, 0)<br/><!--
+									-->> None 
+								</pre>
+						</ul>
+					</section>
+
+					<!-- Slide 13: Finding primes -->
+					<section>
+						<h3>Prime numbers</h3>
+						<ul>
+							<li>Description: Write a function called <code>primes</code> that, provided a parameter <code>n</code>, will return (return, not print!) all the prime numbers up until <code>n</code> (included) in a list.</li>
+							<li>Inputs: 
+								<ul>
+									<li><code>n</code>: The upper limit for the interval to search for the prime numbers in. In other words, for any prime number p<sub>i</sub>, it must be true that 0 < p<sub>i</sub> <= n.
+								</ul>
+							</li>
+							<li>Expected output: All prime numbers between 0 and <code>n</code> in a list.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> primes(30)<br/><!--
+									-->> [0, 1, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29]<br/><!--
+									-->>>> primes(11)<br/><!--
+									-->> [0, 1, 2, 3, 5, 7, 11]<br/><!--
+									-->>>> primes(-4)<br/><!--
+									-->> None
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Slide 14: Palindromes -->
+					<section>
+						<h3>Palindromes</h3>
+						<ul>
+							<li>Description: Write a function called <code>is_palindrome</code> that, provided a parameter <code>string</code>, will return True if given string <code>string</code> is a palindrome (i.e. doesn't change if reversed), and False otherwise. Spaces are to be ignored (i.e. "a bba" is a considered a palindrome as well as "abba").</li>
+							<li>Inputs:
+								<ul>
+									<li><code>string</code>: A string to be checked whether it's a palindrome or not</li>		
+								</ul>
+							</li>
+							<li>Expected output: True (boolean, not a string) if given string is a palindrome, False otherwise.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> is_palindrome("abccda")<br/><!--
+									-->> True<br/><!--
+									-->>>> is_palindrome("abc")<br/><!--
+									-->> False<br/><!--
+									-->>>> is_palindrome("No lemon, no melon")<br/><!--
+									-->> True
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Slide 15: Word frequency -->
+					<section>
+						<h3>Word frequency</h3>
+						<ul>
+							<li>Description: Write a function called <code>word_freq</code> that, provided a parameter <code>sentence</code> will create a dictionary of key-value pairs where key is a word that is in the sentence and value is the number of occurrences of the word in the sentence. The program should be case-insensitive, i.e. "horse" and "Horse" are considered the same word.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>sentence</code>: The sentence that will be split into words and then word occurrencies will be counted.</li>
+								</ul>
+							</li>
+							<li>Expected output: A dictionary of key-value pairs that shows frequency of words in the sentence, e.g. {"in": 3, "house": 1, "and": 2}.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> word_freq("A horse jumping around")<br/><!--
+									-->> {"a": 1, "horse": 1, "jumping": 1, "around": 1}<br/><!--
+									-->>>> word_freq("A horse a Horse around")<br/><!--
+									-->> {"a": 2, "horse": 2, "around": 1}<br/><!--
+									-->>>> word_freq("aaa aa a aAa")<br/><!--
+									-->> {"aaa": 2, "aa": 1, "a": 1}
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Slide 16: Caesar cipher -->
+					<section>
+						<h3>Caesar cipher</h3>
+						<ul>
+							<li>Description: Write two functions called <code>cipher</code> and <code>decipher</code>. The functions should encrypt and decrypt a text supplied in the parameter <code>text</code> using the <a href="https://en.wikipedia.org/wiki/Caesar_cipher" target="_blank">Caesar cipher</a> with left shift. The function <code>cipher</code> accepts two arguments: <code>text</code> as advertised earlier and an argument <code>n</code> representing the number of characters to shift the text's characters by. The function <code>decipher</code> expects the same arguments. Note that <code>n</code> is always expected to be positive for both functions.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>text</code>: A sentence (string) that is to be ciphered/deciphered.</li>
+									<li><code>n</code>: Number of characters to shift the text's characters by.</li>
+								</ul>
+							</li>
+							<li>Expected output: For <code>cipher</code>, a string encoded by the Caesar cipher with shift of <code>n</code>. For <code>decipher</code>, a decoded string (given that the same <code>n</code> was used for both encoding and decoding).</li>
+							<li>Example:
+								<pre><!--
+									-->>>> cipher("abcd", 1)<br/><!--
+									-->> "zabc"<br/><!--
+									-->>>> decipher("zabc", 1)<br/><!--
+									-->> "abcd"<br/><!--
+									-->>>> cipher("hello", 3)<br/><!--
+									-->> "ebiil"<br/><!--
+									-->>>> decipher(cipher("hello", 10), 10)<br/><!--
+									-->> "hello"
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Collatz conjecture</h3>
+						<ul>
+							<li>Description: Write a function called <code>collatz</code> that, provided an argument <code>n</code>, will return a sequence of numbers as specified by the <a href="https://en.wikipedia.org/wiki/Collatz_conjecture" target="_blank">Collatz conjecture</a> for given <code>n</code>. Collatz conjecture can be summed up by the following statement: if given number is even, divide it by two, if it's odd, triple it and add one. Repeating this generates a sequence that should eventually end up at 1, and that's when the sequence stops.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>n</code>: The first number in the sequence generated by Collatz conjecture. Expected to be positive.
+								</ul>
+							</li>
+							<li>Expected output: A list containing all the numbers generated by the Collatz conjecture, starting with <code>n</code>.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> collatz(5)<br/><!--
+									-->> [5, 16, 8, 4, 2, 1]<br/><!--
+									-->>>> collatz(3)<br/><!--
+									-->> [3, 10, 5, 16, 8, 4, 2, 1]<br/><!--
+									-->>>> collatz(1)<br/><!--
+									-->> [1]<br/><!--
+									-->>>> collatz(4)<br/><!--
+									-->> [4, 2, 1]
+						</ul>
+					</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
