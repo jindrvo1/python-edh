@@ -360,6 +360,168 @@
 						</ul>
 					</section>
 				</section>
+
+				<section>
+					<!-- Slide 1: Introduction -->
+					<section>
+						<h2>Introduction to Python</h2>
+						<h3>Lecture 2</h3>
+						<p>
+							<small>CERGE-EI Economics Discovery Hub</small><br/>
+							<small>Vojtěch Jindra</small><br/>
+							<small class="email"><a href="mailto:jindravo@gmail.com">jindravo@gmail.com</a></small>
+						</p>
+					</section>
+
+					<!-- Slide 2: Outline -->
+					<section>
+						<h3>Outline of the lecture</h3>
+						<ul>
+							<li>Working with libraries in Python</li>
+							<li>Creating a your own library</li>
+							<li>The mathematics library: numpy</li>
+							<li>The scientific library: scipy</li>
+							<li>Overview of plotting libraries</li>
+							<li>The plotting library: plotly</li>
+						</ul>
+					</section>
+
+					<!-- Slide 3: Libraries -->
+					<section>
+						<h3>Libraries</h3>
+						<ul>
+							<li>A set of functions one can import and use</li>
+							<li>The amount and variety of Python's libraries is probably the largest any programming language offers</li>
+							<li>Python has a <a href="https://docs.python.org/3/library/" target="_blank">standard library</a> that is distributed with Python and offers access to the basic functionality</li>
+							<li>Other libraries have to be specifically downloaded
+								<ul>
+									<li><a href="https://pypi.org/" target="_blank">PyPI</a> (<code>pip3 install name_of_the_library</code>)</li>
+									<li><a href="https://docs.conda.io/en/latest/" target="_blank">Conda</a> (<code>conda install name_of_the_library</code>)</li>
+								</ul>
+							</li>
+							<li>There are multiple ways to access the functionality of a library
+								<ul>
+									<li><code>import name_of_the_library</code> and then <code>name_of_the_library.function_name</code></li>
+									<li><code>from name_of_the_library import function_name</code> and then <code>function_name</code></li>
+									<li><code>from name_of_the_library import *</code> and then <code>function_name</code></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<!-- Slide 4: Creating your own library -->
+					<section>
+						<h3>Creating your own library</h3>
+						<ul>
+							<li>Python recognizes libraries by the existence of a file called <code>__init__.py</code></li>
+							<li>As long as such a file exists in given folder, you can import functions from other files in that directory</li>
+							<li>Any directory in your path variable that contains a <code>__init__.py</code> file is treated by Python as a library</li>
+							<li>The <code>__init__.py</code> can even be totally empty</li>
+							<li>The <code>__init__.py</code> can export other modules inside the file, but that is usually the case for more complicated libraries</li>
+							<li>A function called <code>something</code> from a file called <code>example.py</code> can then be imported as <code>from example import something</code></li>
+						</ul>
+					</section>
+
+					<!-- Slide 5: Overview of libraries -->
+					<section>
+						<h3>Popular (relevant) libraries</h3>
+						<ul>
+							<li><code>numpy</code>: A library for mathematics with high-dimensional arrays/matrices. One of the biggest advantages is the speed it offers.</li>
+							<li><code>scipy</code>: Offers functions for scientific computing, linear algebra, optimization, etc. Built on numpy, hence also fast.</li>
+							<li><code>scikit-learn</code>: Machine Learning library made on top of scipy.</li>
+							<li><code>pandas</code>: Great for data manipulation and analysis.</li>
+							<li><code>plotly</code>: Data visualization and analytics. Aside from plots offers also dashboards.</li>
+							<li><code>pillow</code>: Library for working with images.</li>
+							<li><code>requests</code>: HTTP requests made very simple. Useful when working with APIs.</li>
+							<li><code>tensorflow</code>: Machine Learning library that offers a very low-level approach towards building Neural Networks</li>
+							<li><code>keras</code>: A high-level API for <code>tensorflow</code>. Gains in simplicity what it lacks in flexibility.</li>
+							<li><code>pytorch</code>: Another Machine Learning library with a slightly lower-level approach than <code>tensorflow</code>.</li>
+						</ul>
+					</section>
+
+					<!-- Slide 6: Numpy -->
+					<section>
+						<h3>numpy</h3>
+						<ul>
+							<li><code>numpy.array</code> is handled very differently to Python's <code>list</code> under the hood, making <code>numpy.array</code> significantly more efficient
+								<ul>
+									<li>The array carries meta information about its shape separately and thus, operations that change the arrays shape only require to change that one meta information without touching the actual data</li>
+									<li>For details, see this link: <a href="https://ajcr.net/stride-guide-part-1/" target="_blank">https://ajcr.net/stride-guide-part-1/</a></li>
+									<li>The implementation comes with some limitations, e.g. all elements of an array have to be of the same type</li>
+								</ul>
+							</li>
+							<li>Numpy offers a lot of mathematical functions: <a href="https://numpy.org/doc/stable/genindex.html" target="_blank">https://numpy.org/doc/stable/genindex.html</a></li>
+						</ul>
+					</section>
+
+					<!-- Slide 7: Plotting -->
+					<section>
+						<h3>Overview of plotting libraries</h3>
+						<ul>
+							<li><code>matplotlib</code>
+								<ul>
+									<li>The most popular visualization library in Python</li>
+									<li>Partly thanks to the fact that it has been around for more than a decade</li>
+									<li>Very easy to generate simple plots, but gets a bit tedious when more complex visualizations are needed</li>
+								</ul>
+							</li>
+							<li><code>plotly</code>
+								<ul>
+									<li>Offers interactive plots</li>
+									<li>Plotly Express for basic visualizations and Plotly Graph Objects for more complex situations</li>
+									<li>Can be scaled into a web-based interactive dashboard using Plotly Dash</li>
+								</ul>
+							</li>
+							<li><code>seaborn</code>
+								<ul>
+									<li>High-level interface for matplotlib</li>
+									<li>Some complex visualizations can be made very easily, however often it is necessary to know both seaborn and matplotlib</li>
+								</ul>
+							</li>
+							<li><code>ggplot</code>, <code>altair</code>, <code>bokeh</code>, <code>pygal</code>, <code>missingno</code></li>
+						</ul>
+					</section>
+
+					<!-- Slide 8: Plotly -->
+					<section>
+						<h3>Plotly</h3>
+						<ul>
+							<li>Works both with pandas DataFrames and numpy arrays</li>
+							<li>Express
+								<ul>
+									<li>Provides a high-level API to Plotly</li>
+									<li>Some complicated visualizations can be done very easily</li>
+									<li>Some features are not there at all and one has to opt for Graph Objects</li>
+								</ul>
+							</li>
+							<li>Graph Objects
+								<ul>
+									<li>More flexible than Express, but usually requires more code to be written</li>
+									<li>Graph Objects have been around for longer hence it is easier to find help online</li>
+								</ul>
+							</li>
+							<li>Dash
+								<ul>
+									<li>Provides a way to create web-based interactive dashboards</li>
+									<li><a link="https://dash-gallery.plotly.host/Portal/" target="_blank">https://dash-gallery.plotly.host/Portal/</a></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Relevant links</h3>
+						<ul>
+							<li><a href="https://packaging.python.org/tutorials/installing-packages/" target="_blank">Getting started with pipy</a></li>
+							<li><a href="https://astrobiomike.github.io/unix/conda-intro" target="_blank">Getting started with conda</a></li>
+							<li><a href="https://cs231n.github.io/python-numpy-tutorial/" target="_blank">Getting started with numpy</a></li>
+							<li><a href="https://sites.engineering.ucsb.edu/~shell/che210d/numpy.pdf" target="_blank">Getting started with numpy and scipy</a></li>
+							<li><a href="https://plotly.com/python/getting-started/" target="_blank">Getting started with Plotly</a></li>
+							<li><a href="https://matplotlib.org/tutorials/introductory/pyplot.html" target="_blank">Getting started with matplotlib</a></li>
+							<li><a href="https://elitedatascience.com/python-seaborn-tutorial" target="_blank">Getting started with seaborn</a></li>
+						</ul>
+					</section>
+				</section>
 			</div>
 		</div>
 
