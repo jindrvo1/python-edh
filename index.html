@@ -817,6 +817,63 @@
 							</li>
 						</ul>
 					</section>
+
+					<section>
+						<h2>Tasks for practicing</h2>
+					</section>
+
+					<section>
+						<h3>Concatenating files</h3>
+						<ul>
+							<li>Description: Write a function called <code>concat_files</code> that finds all files in the current folder and its sub-folders that end with .txt and creates a new file called "concatenated.md" (.md just so it's not taken as a .txt file when concatenating for the second time) where the contents of all the .txt files should be concatenated. The concatenated file should always include name of the original file, new line, its contents and a another two new lines. Then the same for the next file, until all files are concatenated.</li>
+							<li>Inputs: None</li>
+							<li>Expected output: A file called "concatenated.md" that includes name and content of all .txt files in current folder and its sub-folders.</li>
+							<li>Example:
+								<ul>
+									<li>Assuming I have two files called "text1.txt" and "text2.txt" with contents "this is the first file" and "this is the second file", respectively. Then, the <code>concat_files</code> function should produce a file called "concatenated.md" with the contents as follows.</li>
+									<pre>text1.txt<br/><!--
+										-->this is the first file<br/><!--
+										--><br/><!--
+										-->text2.txt<br/><!--
+										-->this is the second file
+									</pre>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Time series</h3>
+						<ul>
+							<li>Description: Download the <a href="https://raw.githubusercontent.com/jbrownlee/Datasets/master/daily-total-female-births.csv" target="_blank">daily female births dataset</a>. Load it into a <code>pandas.DataFrame</code> and convert the "Date" column into a date format of your choice. Then, randomly replace the "Births" column of 10 rows with a <code>None</code> and use interpolation to fill them back in. Use any interpolation method of your preference. Finally, plot both the original DataFrame with the correct values and the DataFrame with the interpolated values in one plot.</li>
+							<li>Inputs: None</li>
+							<li>Expected output: A plot with two time series: one is the original one, one is with randomly deleted and then interpolated data.</li>
+							<li>Example: Unfortunately, there is not enough space for examples. Hopefully the description is understandable enough.</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Merging DataFrames</h3>
+						<ul>
+							<li>Generate a DataFrame containing 5 students, for example John, Mark, Kate, Alice, Bob. Each student will have exactly two grades (1-5, the Czech grading system) from two math tests. You can assign any grades of your choice (if you don't like Bob, feel free to give him two 5s). Thus, the DataFrame will have 10 rows. Then generate second DataFrame, containing 4 students from the previous DataFrame and a new one, for example John, Mark, Kate, Alice, Tony. Each student will have one grade from a chemistry test. Then, merge those two DataFrames and calculate an average grade for each student. Round the students' grades to an integer (you can't have a final grade 1.3333, it will be a 1). If a student doesn't have a grade from a test, simply ignore it and use the rest of the grades (don't fill with 5s or anything). There are several very different ways to solve this exercise, feel free to pick any of them.</li>
+							<li>Inputs: None</li>
+							<li>Expected output: A dataframe with six students and their average grades.</li>
+							<li>Example:
+								<ul>
+									<li>Assuming the following math grades: John: 1, 3, Mark: 3, 4, Kate: 1, 1, Alice: 2, 3, Bob: 5, 5.</li>
+									<li>Assuming the following chemistry grades: John: 2, Mark: 1, Kate: 3, Alice: 1, Tony: 4.</li>
+									<li>Then the expected output is a DataFrame containing the following names and their respective grades: John: 2, Mark: 2, Kate: 2, Alice: 2, Bob: 5, Tony: 4.</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<!--<section>
+						<h3>Numbers</h3>
+						<ul>
+							<li>Create a class called Number that acts like a normal number (you can do multiplication, addition, ...). Then, create a class called Integer that inherits from Number and implement the integer-specific attributes (only works with integers).
+						</ul>
+					</section>-->
 				</section>
 			</div>
 		</div>
