@@ -521,6 +521,220 @@
 							<li><a href="https://elitedatascience.com/python-seaborn-tutorial" target="_blank">Getting started with seaborn</a></li>
 						</ul>
 					</section>
+
+					<section>
+						<h2>Tasks for practicing</h2>
+					</section>
+
+					<section>
+						<h3>Plotting distributions</h3>
+						<ul>
+							<li>Description: Write a function called <code>prob</code> that, provided two arguments <code>n_flips</code> and <code>n_reps</code>, will </li>
+							<li>Inputs:
+								<ul>
+									<li><code>n</code>: The <code>n</code> in the equation <code>n<sup>m</sup> <= lim</code></li>
+									<li><code>lim</code>: The <code>lim</code> in the equation <code>n<sup>m</sup> <= lim</code></li>
+								</ul>
+							</li>
+							<li>Expected output: The highest possible exponent <code>m</code> that satisfies the equation <code>n<sup>m</sup> <= lim</code>.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> find_exp(2, 500)<br/><!--
+									-->> 8<br/><!--
+									-->>>> find_exp(2, 512)<br/><!--
+									-->> 9<br/><!--
+									-->>>> find_exp(2, 1)<br/><!--
+									-->> 0<br/><!--
+									-->>>> find_exp(2, 0)<br/><!--
+									-->> None 
+								</pre>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<!-- Slide 1: Introduction -->
+					<section>
+						<h2>Introduction to Python</h2>
+						<h3>Lecture 3</h3>
+						<p>
+							<small>CERGE-EI Economics Discovery Hub</small><br/>
+							<small>Vojtěch Jindra</small><br/>
+							<small class="email"><a href="mailto:jindravo@gmail.com">jindravo@gmail.com</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h2>Outline of the lecture</h2>
+						<ul>
+							<li>Browsing directories</li>
+							<li>Handling files</li>
+							<li>pandas</li>
+							<li>sqlite3</li>
+							<li>OOP</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Browsing directories</h2>
+						<ul>
+							<li>Browsing directories can be done with <code>os.listdir</code> or <code>os.scandir</code>
+								<ul>
+									<li><code>os.listdir</code> returns list of names of the files in given directory</li>
+									<li><code>os.scandir</code> returns an iterator of <a href="https://docs.python.org/3/library/os.html#os.DirEntry" target="_blank"><code>os.DirEntry</code></a> which offer access to some extra attributes than just the name</li>
+								</ul>
+							</li>
+							<li>For filtering files by for example their suffixes, one has to use the <code>re</code> library to do pattern matching</li>
+							<li>The <a href="https://docs.python.org/3/library/glob.html" target="_blank">glob</a> library uses <code>re</code> under the hood so we don't have to do filtering manually</li>
+							<li>The <code>glob</code> library can also search for files in sub-directories</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Handling files</h2>
+						<ul>
+							<li>A file can be opened simply with the <code>open</code> function</li>
+							<li>The <code>open</code> function accepts an argument <code>mode</code>
+								<ul>
+									<li><code>mode='w'</code> indicates that we want to write to a file, and it will even create an empty file for us</li>
+									<li><code>mode='r'</code> indicates that we want to read from a file, and will return an error if the file does not exist</li>
+								</ul>
+							</li>
+							<li>Once we open a file, we can write to it using <code>.write</code> and read using <code>.read</code>, <code>.readline</code> and <code>.readlines</code></li>
+							<li>Once we finish reading/writing, we need to close the file using <code>.close</code></li>
+							<li>The <code>with</code> keyword handles closing the file for us</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Pandas</h2>
+						<ul>
+							<li>Library for working with files (CSV, XML, JSON, ...)
+								<ul>
+									<li>List of accepted files and their respective functions can be found <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/io.html" target="_blank">here</a></li>
+								</ul>
+							</li>
+							<li>Two basic data types:
+								<ul>
+									<li><code>pandas.Series</code>: represents a <span style="font-style: italic;">vector</span></li>
+									<li><code>pandas.DataFrame</code>: represents a <span style="font-style: italic;">matrix</span>, essentially multiple <code>pandas.Series</code></li>
+								</ul>
+							</li>
+							<li>Unlike with <code>numpy.array</code> and Python's <code>list</code>, <code>pandas.DataFrame</code> can have named columns and rows
+								<ul>
+									<li>The default <span style='font-style: italice;'>names</span> are numbers</li>
+									<li>One can pass the argument <code>columns</code> to change the names of the columns</li>
+									<li>One can pass the argument <code>index</code> to change the names of the rows</li>
+									<li>Both column and row names can also be changed by passing a dictionary instead of a list</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Accessing data</h2>
+						<ul>
+							<li>The <code>.head</code> and <code>.tail</code> functions offer a preview of the DataFrame</li>
+							<li>The <code>.index</code> and <code>.columns</code> attributes show the name of the rows and columns, respectively</li>
+							<li>Columns, rows and their intersections can be accessed by using <code>.loc</code>, <code>.iloc</code> or simply using the bracket notation
+								<ul>
+									<li>Accessing one column will result in a <code>pandas.Series</code></li>
+									<li>Accessing multiple columns will result in a <code>pandas.DataFrame</code></li>
+									<li>Bracket notation on <code>pandas.Series</code> works with rows, while with <code>pandas.DataFrame</code>, it works with columns</li>
+									<li><code>.loc</code> and <code>.iloc</code> work both with columns and rows</li>
+									<li><code>.loc</code> works with row and columns names, <code>.iloc</code> works with their position</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Boolean indexing</h2>
+						<ul>
+							<li>Works similarly as with <code>numpy.array</code>
+								<ul>
+									<li>A condition on a <code>DataFrame</code> results in a <code>DataFrame</code> of boolean values</li>
+									<li>Boolean <code>DataFrame</code> works like a boolean masks</li>
+								</ul>
+							</li>
+							<li>Aside from normal Python conditions, pandas offers several methods for obtaining boolean masks:
+								<ul>
+									<li><code>.isin</code>: Works like Python's <code>in</code>, but can be used on a whole DataFrame or Series</li>
+									<li><code>.isna</code>: Works similarly as Python's <code>is None</code>, but can be used on a whole DataFrame or Series</li>
+									<li><code>.str</code>: Offers access to <a href="https://pandas.pydata.org/pandas-docs/stable/user_guide/text.html" target="_blank">Pandas' string methods</a>, including for example <code>.startswith</code> or <code>.contains</code></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Missing data</h2>
+						<ul>
+							<li><code>.isna</code> returns a boolean indicating whether a cell contains missing data</li>
+							<li><code>.dropna</code> drops any rows or columns that contain a cell with a missing value
+								<ul>
+									<li><code>axis=0</code> will drop rows</li>
+									<li><code>axis=1</code> will drop columns</li>
+									<li>One can also specify if one missing value is enough to perform a drop, or all values have to be missing, using <code>how="any"</code> or <code>how="all"</code>, respectively</li>
+								</ul>
+							</li>
+							<li><code>.fillna</code> replaces missing values with given value
+								<ul>
+									<li>We can also also specify that we want to use previous/next value to fill the missing one</li>
+								</ul>
+							</li>
+							<li><code>.interpolate</code> fills missing value using an interpolation method
+								<ul>
+									<li>Defaults to linear interpolation, but one can specify a different one, e.g. quadratic</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Grouping and merging</h2>
+						<ul>
+							<li>We can group categorical values using <code>.groupby</code> and apply a function to produce new values using <code>.agg</code></li>
+							<li>We can also concatenate multiple DataFrames using <code>.concat</code></li>
+							<li>We can perform the SQL-like join using <code>.merge</code>
+								<ul>
+									<li>By specifying <code>how</code>, we control which join will be used (inner, outer, left, right)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>sqlite3</h2>
+						<ul>
+							<li>For local work with databases (no need to setup a server)</li>
+							<li>Once a connection to the database is established, we can just use SQL commands to work with it</li>
+							<li><code>SELECT</code> returns a list of tuples, which makes it easy to operate with the data in Python</li>
+							<li>For more complex usage, see <a href="https://docs.python.org/2/library/sqlite3.html" target="_blank">this link</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Object-oriented programming</h2>
+						<ul>
+							<li>Modern programming focuses on OOP</li>
+							<li>Objects are instances of a class - a blueprint with given properties</li>
+							<li>Classes can inherit properties of other classes (for example a square can inherit properties of a rectangle)</li>
+							<li>As soon as we create an object, a constructor function <code>__init__</code> is called
+								<ul>
+									<li>Whatever arguments do we pass to the object, they are further passed to the constructor</li>
+								</ul>
+							</li>
+							<li>Variables can be stored and accessed in an object using the <code>self</code> keyword</li>
+							<li>We can also directly access an object's variables and methods by calling <code>.name_of_the_variable</code></li>
+							<li>Class inheritance allows us to implement only the functions we want to override and keep the rest</li> 
+							<li>Overriding specific methods allows us to perform math operations directly with the object
+								<ul>
+									<li>The complete list of those methods can be found <a href="https://docs.python.org/2/reference/datamodel.html#emulating-numeric-types" target="_blank">here</a></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
 				</section>
 			</div>
 		</div>
