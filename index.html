@@ -526,7 +526,112 @@
 						<h2>Tasks for practicing</h2>
 					</section>
 
-					
+					<section>
+						<h3>Highest average sequence</h3>
+						<ul>
+							<li>Description: Write a function called <code>highest_average</code> that, provided a two dimensional <code>numpy.array</code>, will find the row with highest sum of its elements, and then return that row. Moreover, it should also plot the distribution of the sums as a barplot. Test it on a an array with 1000 rows and 100 columns with integer elements between 0 and 10 (excl.).</li>
+							<li>Inputs:
+								<ul>
+									<li><code>x</code>: The two dimensional array to look for the highest-sum row in.</li>
+								</ul>
+							</li>
+							<li>Expected output: The (one dimensional) array with the highest sum.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> highest_average(np.array([[1, 4], [2, 2]]))<br/><!--
+									-->> np.array([1, 4])
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Moving average</h3>
+						<ul>
+							<li>Description: Write a function called <code>moving_average</code> that, provided a one dimensional <code>numpy.array</code> and an argument <code>n</code> indicating size of the moving average window, will calculate the moving average with window size <code>n</code>. The function should stop at the end of the sequence when number of elements left is less than <code>n</code>.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>x</code>: One dimensional array to compute the moving average on.</li>
+									<li><code>n</code>: The window size of the moving average.</li>
+								</ul>
+							</li>
+							<li>Expected output: One dimensional array with moving averages.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> moving_average(np.array([2, 4, 6, 8]), n = 3)<br/><!--
+									-->> np.array([4, 6])<br/><!--
+									-->>>> moving_average(np.array([1, 2, 5, 3, 12, 2]), n = 2)<br/><!--
+									-->> np.array([1.5, 3.5, 4, 7.5, 7])<br/><!--
+									-->>>> moving_average(np.array([10, 20, 0]), n = 3)<br/><!--
+									-->> np.array([10])
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Normalization</h3>
+						<ul>
+							<li>Description: Write a function called <code>normalize</code> that, provided a one dimensional <code>numpy.array</code> and an argument <code>method</code> indicating the method to use for normalization (either <code>"minmax"</code> or <code>"zscore"</code>), will normalize the input array using the selected method.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>x</code>: One dimensional array to normalize.</li>
+									<li><code>method</code>: Can contain either the string <code>"minmax"</code> or <code>"zscore"</code>. If <code>"minmax"</code> is passed, use the min-max normalization method, if <code>"zscore"</code> is passed, use the z-score normalization method.</li>
+								</ul>
+							</li>
+							<li>Expected output: One dimensional array of the same size as the input array with its elements normalized using the specified method.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> normalize(np.array([1, 5, 2, 9, 3]), method="minmax")<br/><!--
+									-->> np.array([0, 0.5, 0.125, 1, 0.25])<br/><!--
+									-->>>> normalize(np.array([1, 5, 2, 9, 3]), method="zscore")<br/><!--
+									-->> np.array([-1.06066017, 0.35355339, -0.70710678, 1.76776695, -0.35355339])
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Finding duplicates</h3>
+						<ul>
+							<li>Description: Write a function called <code>find_multiples</code> that, provided a one dimensional <code>numpy.array</code> and an integer <code>n</code>, will return only such numbers that appear in the array consecutively <code>n</code> or more times.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>x</code>: One dimensional array to look in for consecutive numbers.</li>
+									<li><code>n</code>: Number of times a number has to consecutively appear in the input array in order to be returned.</li>
+								</ul>
+							</li>
+							<li>Expected output: One dimensional array with elements that consecutively appeared <code>n</code> or more times in the input array.</li>
+							<li>Example:
+								<pre><!--
+									-->>>> find_multiples(np.array([1, 1, 1, 2, 3]), n=2)<br/><!--
+									-->> np.array([1])<br/><!--
+									-->>>> find_multiples(np.array([1, 1, 1, 2, 2, 3, 4, 5]), n=2)<br/><!--
+									-->> np.array([1, 2])<br/><!--
+									-->>>> find_multiples(np.array([1, 1, 1, 2, 3, 1, 1]), n=1)<br/><!--
+									-->> np.array([1, 2, 3])<br/><!--
+									-->>>> find_multiples(np.array([1, 1, 1, 2, 3, 1, 1, 1]), n=4)<br/><!--
+									-->> np.array([])
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Normal distribution</h3>
+						<ul>
+							<li>Description: Write a function called <code>draw_normal</code> that, provided an integer <code>n</code>, float <code>mean</code> and float <code>std</code>, will generate <code>n</code> random samples from the normal distribution with parameters specified by the <code>mean</code> and <code>std</code> arguments, defaulting to standard normal distribution if no <code>mean</code> and <code>std</code> are specified. Then, the function will plot the distribution of the samples as a bar plot and a line of the probability density function of the distribution N(<code>mean</code>, <code>std</code>). The figure should be just printed and the function should return nothing.</li>
+							<li>Inputs:
+								<ul>
+									<li><code>n</code>: Number of samples to draw from the specified distribution.</li>
+									<li><code>mean</code> (optional, defaults to 0): The mean of the normal distribution.</li>
+									<li><code>std</code> (optional, defaults to 1): The standard deviation of the normal distribution.</li>
+								</ul>
+							</li>
+							<li>Expected output: The two distributions: PDF of N(<code>mean</code>, <code>std</code>), and distribution of the samples drawn from this ditribution. Both in the same plot, just printed, not returned.</li>
+							<li>Example: Unfortunately, there is not enough space for examples. Hopefully the description is understandable enough.</li>
+						</ul>
+					</section>
 				</section>
 
 				<section>
