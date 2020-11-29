@@ -855,7 +855,7 @@
 					<section>
 						<h3>Merging DataFrames</h3>
 						<ul>
-							<li>Generate a DataFrame containing 5 students, for example John, Mark, Kate, Alice, Bob. Each student will have exactly two grades (1-5, the Czech grading system) from two math tests. You can assign any grades of your choice (if you don't like Bob, feel free to give him two 5s). Thus, the DataFrame will have 10 rows. Then generate second DataFrame, containing 4 students from the previous DataFrame and a new one, for example John, Mark, Kate, Alice, Tony. Each student will have one grade from a chemistry test. Then, merge those two DataFrames and calculate an average grade for each student. Round the students' grades to an integer (you can't have a final grade 1.3333, it will be a 1). If a student doesn't have a grade from a test, simply ignore it and use the rest of the grades (don't fill with 5s or anything). There are several very different ways to solve this exercise, feel free to pick any of them.</li>
+							<li>Description: Generate a DataFrame containing 5 students, for example John, Mark, Kate, Alice, Bob. Each student will have exactly two grades (1-5, the Czech grading system) from two math tests. You can assign any grades of your choice (if you don't like Bob, feel free to give him two 5s). Thus, the DataFrame will have 10 rows. Then generate second DataFrame, containing 4 students from the previous DataFrame and a new one, for example John, Mark, Kate, Alice, Tony. Each student will have one grade from a chemistry test. Then, merge those two DataFrames and calculate an average grade for each student. Round the students' grades to an integer (you can't have a final grade 1.3333, it will be a 1). If a student doesn't have a grade from a test, simply ignore it and use the rest of the grades (don't fill with 5s or anything). There are several very different ways to solve this exercise, feel free to pick any of them.</li>
 							<li>Inputs: None</li>
 							<li>Expected output: A dataframe with six students and their average grades.</li>
 							<li>Example:
@@ -868,12 +868,36 @@
 						</ul>
 					</section>
 
-					<!--<section>
-						<h3>Numbers</h3>
+					<section>
+						<h3>OOP (1/2)</h3>
 						<ul>
-							<li>Create a class called Number that acts like a normal number (you can do multiplication, addition, ...). Then, create a class called Integer that inherits from Number and implement the integer-specific attributes (only works with integers).
+							<li>Description: Write a class called <code>Loss</code> that, provided two numpy arrays of equal length <code>x</code> and <code>y</code> to the constructor (the <code>__init__</code> function), will serve as an object to calculate the error/loss between those two arrays. More specifically, the class should have implemented at least the following functions: <code>calc_mse</code> which will calculate the <a href="https://en.wikipedia.org/wiki/Mean_squared_error" target="_blank">Mean Squared Error</a> between <code>x</code> and <code>y</code>, and <code>calc_rmse</code>, which will calculate the <a href="https://en.wikipedia.org/wiki/Root-mean-square_deviation" target="_blank">Root Mean Squared Error</a> between the two arrays. Moreover, implement the <code>__str__</code> function so after printing given object, the output is readable and shows the values of <code>x</code> and <code>y</code>. Afterwards, create a class called <code>NormalizedLoss</code> which inherits from <code>Loss</code> and the only difference is that in the constructor, the <code>x</code> and <code>y</code> arrays will be first independently rescaled into a 0-1 interval using the <a href="https://en.wikipedia.org/wiki/Feature_scaling#Rescaling_(min-max_normalization)" target="_blank">min-max normalization</a>. You shouldn't need to reimplement any other methods.</li>
+							<li>Example follows on the next slide.</li>
 						</ul>
-					</section>-->
+					</section>
+					
+					<section>
+						<h3>OOP (2/2)</h3>
+						<ul>
+							<li>Example:
+								<pre>>>> l = Loss(np.array([1, 2, 3]), np.array([2, 2, 3]))<br/><!--
+									-->>>> print(l)<br/><!--
+									-->> Loss(x=[1, 2, 3], y=[2, 3, 4])<br/><!--
+									-->>>> l.calc_mse()<br/><!--
+									-->> 0.3333333333333333<br/><!--
+									-->>>> l.calc_rmse()<br/><!--
+									-->> 0.5773502691896257<br/><!--
+									-->>>> l = NormalizedLoss(np.array([1, 2, 3]), np.array([2, 2, 3]))<br/><!--
+									-->>>> print(l)<br/><!--
+									-->> NormalizedLoss(x=[0, 0.5, 1], y=[0, 0, 1])<br/><!--
+									-->>>> l.calc_mse()<br/><!--
+									-->> 0.08333333333333333<br/><!--
+									-->>>> l.calc_rmse()<br/><!--
+									-->> 0.28867513459481287
+								</pre>
+							</li>
+						</ul>
+					</section>
 				</section>
 			</div>
 		</div>
