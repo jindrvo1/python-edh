@@ -875,7 +875,7 @@
 							<li>Example follows on the next slide.</li>
 						</ul>
 					</section>
-					
+
 					<section>
 						<h3>OOP (2/2)</h3>
 						<ul>
@@ -894,6 +894,291 @@
 									-->> 0.08333333333333333<br/><!--
 									-->>>> l.calc_rmse()<br/><!--
 									-->> 0.28867513459481287
+								</pre>
+							</li>
+						</ul>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h2>Introduction to Python</h2>
+						<h3>Lecture 4</h3>
+						<p>
+							<small>CERGE-EI Economics Discovery Hub</small><br/>
+							<small>Vojtěch Jindra</small><br/>
+							<small class="email"><a href="mailto:jindravo@gmail.com">jindravo@gmail.com</a></small>
+						</p>
+					</section>
+
+					<section>
+						<h3>Outline of the lecture</h3>
+						<ul>
+							<li>APIs
+								<ul>
+									<li>Theory and application in Python</li>
+									<li><code>requests</code> package</li>
+									<li>Third party APIs</li>
+									<li>Dealing with limitations of third party APIs</li>
+									<li>Creating an API</li>
+									<li>API wrappers</li>
+								</ul>
+							</li>
+							<li>Web Scraping
+								<ul>
+									<li>From requests to advanced packages</li>
+									<li>BeautifulSoup4</li>
+									<li>Scrapy</li>
+									<li>Dynamically-generated content</li>
+									<li>Selenium</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Application Programming Interface</h3>
+						<ul>
+							<li>Multiple kinds of APIs:
+								<ul>
+									<li>SOAP: Messages exchanged in XML</li>
+									<li>XML-RPC: Uses XML, defines a number of data types</li>
+									<li>JSON-RPC: Similarly to XML-RPC, bud uses JSON</li>
+									<li>REST: Commands defined by HTTPs GET, POST, PUT and DELETE. Can use multiple standards for the message itself.</li>
+								</ul>
+							</li>
+							<li>In Python, we can use several libraries to make requests to APIs:
+								<ul>
+									<li><code><a href="https://requests.readthedocs.io/en/master/user/quickstart/" target="_blank">requests</a></code>: A high-level interface for making requests</li>
+									<li><code><a href="https://docs.python.org/3/library/urllib.html" target="_blank">urllib2</a></code>: A lower-level interface</li>
+									<li><code><a href="https://docs.aiohttp.org/en/stable/">aiohttp</a></code>: An interface for asynchronous requests</li>
+								</ul>
+							</li>
+							<li>It is also possible to define an API of our own very quickly:
+								<ul>
+									<li><a href="https://www.flaskapi.org/" target="_blank">Flask API</a></li>
+									<li><a href="https://flask.palletsprojects.com/en/1.1.x/api/" target="_blank">Flask</a></li>
+									<li><a href="https://www.django-rest-framework.org/" target="_blank">Django REST Framework</a></li>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3><code>requests</code></h3>
+						<ul>
+							<li>The documentation can be found <a href="https://requests.readthedocs.io/en/master/user/quickstart/" target="_blank">here</a></li>
+							<li>The <code>requests</code> library has a designated method for each GET, POST, PUT and DELETE request</li>
+							<li>The <code>params</code> argument handles parameters that will be shown in the URL:
+								<ul>
+									<li><code>requests.get('example.com', params={'par1': 'abc', 'par2': 'bcd'})</code> will be transformed into the <code>example.com?par1=abc&par2=bcd</code> URL</li>
+									<li>Having parameters shown in the URL has its upsides, but also its downsides</li>
+								</ul>
+							</li>
+							<li>The <code>data</code> argument handles parameteres that will NOT be shown in the URL:
+								<ul>
+									<li><code>requests.get('example.com', data={'par1': 'abc', 'par2': 'bcd'})</code> will result into the <code>example.com</code> URL while still carrying the data</li>
+									<li>For example for sending passwords over the internet, this is obviously a better option</li>
+								</ul>
+							</li>
+							<li> The <code>headers</code> argument allows you to send custom <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers" target="_blank">HTTP headers</a>:
+								<ul>
+									<li><code>requests.get('example.com', headers={'content-type':'application/json'}</code> will specify that you're expecting the data to be returned in json</li>
+									<li>Headers can be especially useful when an API has some limitations (e.g. max 100 requests per minute)</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Third-party APIs</h3>
+						<ul>
+							<li>Usually, an API comes with its documentation, otherwise the user would not be able to work with it</li>
+							<li>And every API also comes with a number of limitations, usually listed in the docs.</li>
+							<li>Moreover, some APIs require you to login to your account before being granted the access, which can be done via several headers:
+								<ul>
+									<li><code>X-API-KEY</code></li>
+									<li><code>Authorization</code></li>
+									<li><code>X-Authentication-Token</code></li>
+								</ul>
+							</li>
+							<li>Few examples:
+								<ul>
+									<li><a href="https://developer.github.com/v3/" target="_blank">Github API</a> limits the number of results you can get with one call to 100 and up to 5000 requests per hour</li>
+									<li><a href="https://github.com/ZenHubIO/API" target="_blank">Zenhub API</a> allows up to 100 requests per minute</li>
+									<li><a href="https://clockify.me/developers-api" target="_blank">Clockify API</a> allows up to 10 requests per second and also limits the number of results you can get per call</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Dealing with limitations of APIs</h3>
+						<ul>
+							<li>Github and Zenhub APIs return several headers to make working with the limitations easier, however it's not an obligation for all APIs:
+								<ul>
+									<li><code>X-RateLimit-Limit</code>: How many requests can I make per given time</li>
+									<li><code>X-RateLimit-Remaining</code>: How many requests can I currently make (i.e. how many are left until reaching the limit)</li>
+									<li><code>X-RateLimit-Used</code>: How many requests have I made</li>
+									<li><code>X-RateLimit-Reset</code>: The time when the limit will reset</li>
+								</ul>
+							</li>
+							<li>Provided these headers, one can simply check with every request whether the limit has been reached, and then wait until it is refreshed</li>
+							<li>If the headers aren't available, one can check for the <code>status_code</code> of the request, which indicates whether the request has finished successfully (<code>status_code == 200</code>), or it was forbidden to request anything (<code>status_code == 403</code>)
+								<ul>
+									<li>This method is a bit less reliable as we can either check for <code>status_code == 200</code>, which might not take into account e.g. forgetting to log in (401) and then we enter an infinite loop, or we can check for <code>status_code == 403</code>, which then allows 401 requests to pass through and we obtain damaged data</li>
+									<li>Moreover, we are making unnecessary requests until we get 200</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Creating an API</h3>
+						<ul>
+							<li><a href="https://flask.palletsprojects.com/en/1.1.x/api/" target="_blank">Flask API</a> allows for very straightforward API creation</li>
+							<li>You can simply use <code>@app.route('/the/url', methods=['GET', 'POST', ...])</code> above a function to indicate that given function should be called when <code>/the/url</code> is requested</li>
+							<li><code>request.method</code> is used to carry which method was used with the request</li>
+							<li><code>request.data</code> carries the data passed in <code>data</code></li>
+							<li><code>request.args</code> carries the data passed in <code>params</code></li>
+							<li>Whatever then gets returned by the function is passed as the data of the response</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>API wrappers</h3>
+						<ul>
+							<li>Many APIs come with a Python library that is essentially a wrapper to make things easier</li>
+							<li>However, some specific cases might not be implemented in the wrapper, and then we still need to go for the <code>requests</code> library</li>
+							<li>Examples:
+								<ul>
+									<li><a href="https://github.com/PyGithub/PyGithub" target="_blank">PyGithub</a> for the Github API</li>
+									<li><a href="https://pypi.org/project/yfinance/" target="_blank">yfinance</a> and <a href="https://pypi.org/project/yahoo-finance-api2/" target="_blank">yahoo_finance_api2</a> for the Yahoo Finance API</li>
+									<li><a href="https://github.com/mattduck/wbpy" target="_blank">wbpy</a> for the Worldbank API</li>
+									<li><a href="https://github.com/realpython/list-of-python-api-wrappers" target="_blank">And many more</a></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Web scraping</h3>
+						<ul>
+							<li>Essentially making a request to a website to retrieve its source code and then parsing it
+								<ul>
+									<li>Meaning that this can be done with the <code>requests</code> library</li>
+									<li>However, this is rather ineffective and there are more appropriate tools for scraping with Python</li>
+								</ul>
+							</li>
+							<li>Having some knowledge of HTML definitely makes the job easier</li>
+							<li>Example of some scraping libraries:
+								<ul>
+									<li><a href="https://www.crummy.com/software/BeautifulSoup/bs4/doc/#" target="_blank">BeatifulSoup4</a></li>
+									<li><a href="https://scrapy.org/" target="_blank">Scrapy</a></li>
+									<li><a href="https://pypi.org/project/selenium/" target="_blank">Selenium</a></li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>BeatifulSoup4</h3>
+						<ul>
+							<li>An HTML parser</li>
+							<li>Source code obtained by a request is passed to BS4 for easier parsing</li>
+							<li>Has troubles with pages that load the content dynamically with JavaScript
+								<ul>
+									<li>After the request is made, an empty page is returned</li>
+									<li>The content dynamically loads later, which is not represented in what we retrieved</li>
+								</ul>
+							</li>
+							<li>Full web crawling and parsing example using BS4, requests and much more can be found <a href="https://github.com/jindrvo1/WebIntelligence/blob/master/Assignment%201/Assignment%201.ipynb" target="_blank">here</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Scrapy</h3>
+						<ul>
+							<li>Scrapy is a whole scraping framework instead of a simple Python library</li>
+							<li>After installation, we obtain a command line tool called <code>scrapy</code></li>
+							<li>We first need to generate a Scrapy project (<code>scrapy startproject project_name</code>)</li>
+							<li>Then we generate a spider/scraper (<code>scrapy genspider name url_to_scrape</code>)</li>
+							<li>Each spider has a <code>parse</code> method which accepts the request's response</li>
+							<li>In the <code>parse</code> method, we work essentially the same way as we would work with BS4</li>
+							<li>Managing large parsing projects definitely gets easier than with pure Python, but is a little cumbersome for small applications/one-time parsers</li>
+							<li>Still doesn't solve the problem with dynamically-generated content (<a href="https://docs.scrapy.org/en/latest/topics/dynamic-content.html#topics-javascript-rendering" target="_blank">by default</a>)</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Scraping dynamically-generated content</h3>
+						<ul>
+							<li>Reverse engineering JavaScript
+								<ul>
+									<li>Basically, looking at the source code of the website and trying to figure out how does the page load the content (e.g. what sources does it use)</li>
+									<li>If this works out, then one can easily use the same source to load the data</li>
+									<li>Can be very time consuming, but then working with the source data is much easier</li>
+								</ul>
+							</li>
+							<li>Pre-rendering JavaScript
+								<ul>
+									<li>Installing a headless browser that acts like a middle man between you and the server to pre-render JavaScript before response is received</li>
+									<li>The browser receives the reponse, waits for the dynamical content to load and then sends the loaded content to you</li>
+									<li>Higher effectivity than trying to reverse engineer the JavaScript, but can heavily slow your code</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Selenium</h3>
+						<ul>
+							<li>A framework for testing web applications</li>
+							<li>Can also be used for web scraping as it simulates user actions inside a browser, and therefore dynamically generated content is retrieved as well</li>
+							<li>To use Selenium, one has to have a browser and its driver of the same version installed (e.g. Chrome and <a href="https://sites.google.com/a/chromium.org/chromedriver/downloads" target="_blank">Chromedriver</a>)</li>
+							<li>Once a driver is loaded, the browser opens and one can navigate through it using several commands
+								<ul>
+									<li><code>.get</code> will open a web page</li>
+									<li><code>.click</code> will click on currently chosen element</li>
+									<li><code>.send_keys</code> will write into currently chosen element</li>
+									<li><code>.find_element_by_id</code> and <code>.find_elements_by_class_name</code> will search for an element by either its ID or class, respectively</li>
+								</ul>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h2>Tasks for practicing</h2>
+					</section>
+
+					<section>
+						<h3>APIs</h3>
+						<ul>
+							<li>Description: Create a simple API that listens to GET and POST requests. For a POST request, the API will obtain a stock ticker and its open and store it in a CSV file. For a GET request, it will either return the whole CSV file as a <code>pandas.DataFrame</code>, or, if the path <code>/ticker</code> is requested, it will return only the part of the CSV that is relevant to the ticker (e.g. <code>GET /ticker/MSFT</code> will return only the rows in the CSV where <code>ticker == 'MSFT'</code>. Moreover, use a stock API of your choice to retrieve data of multiple Ticker that you'll feed to your API with a POST request.</li>
+							<li>Example (in something of a pseudocode so it fits):
+								<pre><!--
+									-->>>> tickers = yfinance.tickers('AAPL MSFT GOOG')<br/><!--
+									-->>>> requests.post('localhost:5000/', data={'ticker': 'AAPL', 'open': tickers.AAPL['open']})<br/><!--
+									-->>>> requests.get('localhost:5000/')<br/><!--
+									-->> pd.DataFrame({'Ticker': 'AAPL', 'Open': 122.43})<br/><!--
+									-->>>> requests.post('localhost:5000/', data={'ticker': 'MSFT', 'open': tickers.MSFT['open']})<br/><!--
+									-->>>> requests.get('localhost:5000/')<br/><!--
+									-->> pd.DataFrame([{'Ticker': 'APPL', 'Open': 122.43}, {'Ticker': 'MSFT', 'Open': 213.95}])<br/><!--
+									-->>>> requests.get('localhost:5000/ticker/AAPL')<br/><!--
+									-->> pd.DataFrame({'Ticker': 'AAPL', 'Open': 122.43})
+								</pre>
+							</li>
+						</ul>
+					</section>
+
+					<section>
+						<h3>Web crawling and scraping</h3>
+						<ul>
+							<li>Description: Go to wikipedia and select a random page. Use that as your initial page. Scrape its title and image in the infobox and save to a file in the format <code>title: link_to_image</code>. If there is no image, skip this page. Each wikipedia page includes link to many other wikipedia articles: scrape those from the page. Repeat this process until you have 100 lines in your output file, each line representing a different wikipedia page's title and image. Make sure that there is no repetition (it is very likely if a page A links to page B, then page B will link to page A).</li>
+							<li>Example (first three lines of the output file, the long links are cut off):
+								<pre><!--
+									-->Alexandria Ocasio-Cortez: https://en.wikipedia.org/wiki/File:Alexandria_Ocasio-Cortez_Official_Portrai<br/><!--
+									-->United States House of Representatives: https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Seal<br/><!--
+									-->New York's 14th congressional district: https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/New_
 								</pre>
 							</li>
 						</ul>
